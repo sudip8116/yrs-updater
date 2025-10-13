@@ -18,7 +18,8 @@ def request_update():
     while True:
         try:
             res = rq.get(main_site_url, headers=headers)
-            print(f"{res.status_code} : {res.text}")
+            if res.status_code == 200:
+                print("server updated")
         except:
             print("server down")
         sleep(1)
@@ -29,4 +30,5 @@ def request_update_thread():
 
 
 request_update_thread()
+
 
