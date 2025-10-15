@@ -4,7 +4,7 @@ from flask import Flask
 import requests as rq
 
 
-main_site_url = "http://10.81.99.50:5000/request-update"
+main_site_url = "https://yourradiostation.pythonanywhere.com/request-update"
 headers = {"auth": "3f9a7b2c1d8e4f6a0b9c2d7e8f1a3b"}
 app = Flask(__name__)
 
@@ -35,3 +35,4 @@ def request_update_thread():
 
 
 request_update_thread()
+
