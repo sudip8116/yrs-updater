@@ -4,7 +4,7 @@ from flask import Flask
 import requests as rq
 
 
-main_site_url = "https://yourradiostation.pythonanywhere.com//request-update"
+main_site_url = "http://10.81.99.50:5000/request-update"
 headers = {"auth": "3f9a7b2c1d8e4f6a0b9c2d7e8f1a3b"}
 app = Flask(__name__)
 
@@ -14,12 +14,17 @@ def home():
     return "Welcome"
 
 
+@app.route("/pull")
+def pull():
+    print("server pull by pythonanywhere")
+    return "server pulled"
+
+
 def request_update():
     while True:
         try:
             res = rq.get(main_site_url, headers=headers)
-            if res.status_code == 200:
-                print("server updated")
+            print(f"{res.status_code} : {res.text}")
         except:
             print("server down")
         sleep(1)
@@ -30,5 +35,3 @@ def request_update_thread():
 
 
 request_update_thread()
-
-
